@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block content %}
+<div class="row" style="margin-top: 5px;">
+    <div class="col-md-12">
+        <div class="callout callout-info">
+            <h5>Hello {{ host_user }}!</h5>
+            <p>I am Rango, I'm your assistant.</p>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px;">
+    <div class="col-sm-6 bg-light">
+        <div class="position-relative">
+            <img src="{{ url_for('static',filename='images/a1.jpeg' ) }}" alt="Photo 1" class="img-fluid">
+            <div class="ribbon-wrapper ribbon-lg">
+                <div class="ribbon bg-success text-lg">
+                    <a href="{{ url_for('.git_issues_settings') }}">Git Issues</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 bg-light">
+        <div class="position-relative">
+            <img src="{{ url_for('static',filename='images/a3.jpeg' ) }}" alt="Photo 1" class="img-fluid">
+            <div class="ribbon-wrapper ribbon-lg">
+                <div class="ribbon bg-success text-lg">
+                    <a href="{{ url_for('.git_issues_table') }}">Issues Table</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

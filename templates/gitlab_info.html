@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row bg-white" style="margin-top: 100px;">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="m-0">GitLab Projecrt Issus Settings Info</h5>
+              </div>
+              <div class="card-body">
+                <p class="text-muted text-sm"><b>Host: </b> {{ gitlab_info.gitlab_host }}</p>
+                  <p class="text-muted text-sm"><b>Token: </b> {{ gitlab_info.token }}</p>
+                  <p class="text-muted text-sm"><b>Project ID: </b> {{ gitlab_info.project_id }}</p>
+                  <p class="text-muted text-sm"><b>Store Path: </b> {{ gitlab_info.store_path }}</p>
+                <a href="{{ url_for('.git_issues_settings_edit') }}" class="btn btn-primary">Edit</a>
+              </div>
+              <div class="card-footer">
+                  <a href="{{ url_for('.generate_gitlab_issues') }}" class="btn btn-success">Run</a>
+              </div>
+            </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

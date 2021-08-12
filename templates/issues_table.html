@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row bg-white" style="margin-top: 5px;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Git Issues</h3>
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>iid</th>
+                        <th>project_id</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>state</th>
+                        <th>created_at</th>
+                        <th>updated_at</th>
+                        <th>closed_at</th>
+                        <th>labels</th>
+                        <th>milestone_id</th>
+                        <th>milestone_iid</th>
+                        <th>milestone_project_id</th>
+                        <th>milestone_title</th>
+                        <th>milestone_description</th>
+                        <th>milestone_state</th>
+                        <th>milestone_create_at</th>
+                        <th>milestone_updated_at</th>
+                        <th>milestone_state</th>
+                        <th>milestone_due_date</th>
+                        <th>assignees_id</th>
+                        <th>assignees_name</th>
+                        <th>assignees_username</th>
+                        <th>assignees_state</th>
+                        <th>assignees_avatar_url</th>
+                        <th>assignees_web_url</th>
+                        <th>author_id</th>
+                        <th>author_name</th>
+                        <th>author_username</th>
+                        <th>author_state</th>
+                        <th>author_avatar_url</th>
+                        <th>author_web_url</th>
+                        <th>assignee_id</th>
+                        <th>assignee_name</th>
+                        <th>assignee_username</th>
+                        <th>assignee_state</th>
+                        <th>assignee_avatar_url</th>
+                        <th>assignee_web_url</th>
+                        <th>user_notes_count</th>
+                        <th>upvotes</th>
+                        <th>downvotes</th>
+                        <th>due_date</th>
+                        <th>confidential</th>
+                        <th>web_url</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for issue in issues %}
+                    <tr>
+                        <td>{{ issue[0] }}</td>
+                        <td>{{ issue[1] }}</td>
+                        <td>{{ issue[2] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[3] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[4] }}</textarea></td>
+                        <td>{{ issue[5] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[6] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[7] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[8] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[9] }}</textarea></td>
+                        <td>{{ issue[10] }}</td>
+                        <td>{{ issue[11] }}</td>
+                        <td>{{ issue[12] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[13] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[14] }}</textarea></td>
+                        <td>{{ issue[15] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[16] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[17] }}</textarea></td>
+                        <td>{{ issue[18] }}</td>
+                        <td>{{ issue[19] }}</td>
+                        <td>{{ issue[20] }}</td>
+                        <td>{{ issue[21] }}</td>
+                        <td>{{ issue[22] }}</td>
+                        <td>{{ issue[23] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[24] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[25] }}</textarea></td>
+                        <td>{{ issue[26] }}</td>
+                        <td>{{ issue[27] }}</td>
+                        <td>{{ issue[28] }}</td>
+                        <td>{{ issue[29] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[30] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[31] }}</textarea></td>
+                        <td>{{ issue[32] }}</td>
+                        <td>{{ issue[33] }}</td>
+                        <td>{{ issue[34] }}</td>
+                        <td>{{ issue[35] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[36] }}</textarea></td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[37] }}</textarea></td>
+                        <td>{{ issue[38] }}</td>
+                        <td>{{ issue[39] }}</td>
+                        <td>{{ issue[40] }}</td>
+                        <td>{{ issue[41] }}</td>
+                        <td>{{ issue[42] }}</td>
+                        <td><textarea disabled class="form-control" style="height: 40px;">{{ issue[43] }}</textarea></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>id</th>
+                        <th>iid</th>
+                        <th>project_id</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>state</th>
+                        <th>created_at</th>
+                        <th>updated_at</th>
+                        <th>closed_at</th>
+                        <th>labels</th>
+                        <th>milestone_id</th>
+                        <th>milestone_iid</th>
+                        <th>milestone_project_id</th>
+                        <th>milestone_title</th>
+                        <th>milestone_description</th>
+                        <th>milestone_state</th>
+                        <th>milestone_create_at</th>
+                        <th>milestone_updated_at</th>
+                        <th>milestone_state</th>
+                        <th>milestone_due_date</th>
+                        <th>assignees_id</th>
+                        <th>assignees_name</th>
+                        <th>assignees_username</th>
+                        <th>assignees_state</th>
+                        <th>assignees_avatar_url</th>
+                        <th>assignees_web_url</th>
+                        <th>author_id</th>
+                        <th>author_name</th>
+                        <th>author_username</th>
+                        <th>author_state</th>
+                        <th>author_avatar_url</th>
+                        <th>author_web_url</th>
+                        <th>assignee_id</th>
+                        <th>assignee_name</th>
+                        <th>assignee_username</th>
+                        <th>assignee_state</th>
+                        <th>assignee_avatar_url</th>
+                        <th>assignee_web_url</th>
+                        <th>user_notes_count</th>
+                        <th>upvotes</th>
+                        <th>downvotes</th>
+                        <th>due_date</th>
+                        <th>confidential</th>
+                        <th>web_url</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
+{% endblock %}
