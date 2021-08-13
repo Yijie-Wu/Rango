@@ -4,7 +4,6 @@ from flask import Flask
 from pyfladesk import init_gui
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import CSRFProtect
-from flask_bootstrap import Bootstrap
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -24,13 +23,11 @@ class Settings():
 
 db = SQLAlchemy()
 csrf = CSRFProtect()
-bootstrap = Bootstrap()
 
 app = Flask(__name__)
 app.config.from_object(Settings)
 db.init_app(app)
 csrf.init_app(app)
-bootstrap.init_app(app)
 
 from routes import *
 
