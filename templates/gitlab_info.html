@@ -5,31 +5,64 @@
 
 
 {% block content %}
-
-<div class="row bg-white" style="margin-top: 100px;">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">GitLab Projecrt Issus Settings Info</h5>
-              </div>
-              <div class="card-body">
-                <p class="text-muted text-sm"><b>Host: </b> {{ gitlab_info.gitlab_host }}</p>
-                  <p class="text-muted text-sm"><b>Token: </b> {{ gitlab_info.token }}</p>
-                  <p class="text-muted text-sm"><b>Project ID: </b> {{ gitlab_info.project_id }}</p>
-                  <p class="text-muted text-sm"><b>Store Path: </b> {{ gitlab_info.store_path }}</p>
-                <a href="{{ url_for('.git_issues_settings_edit') }}" class="btn btn-primary">Edit</a>
-              </div>
-              <div class="card-footer">
-                  <a href="{{ url_for('.generate_gitlab_issues') }}" class="btn btn-success">Run</a>
-              </div>
+    <div class="row bg-white" style="margin-top: 100px;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="callout callout-info" id="status">
             </div>
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h5 class="m-0">GitLab Projecrt Issus Settings Info</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted text-sm"><b>Host: </b> {{ gitlab_info.gitlab_host }}</p>
+                    <p class="text-muted text-sm"><b>Token: </b> {{ gitlab_info.token }}</p>
+                    <p class="text-muted text-sm"><b>Project ID: </b> {{ gitlab_info.project_id }}</p>
+                    <p class="text-muted text-sm"><b>Store Path: </b> {{ gitlab_info.store_path }}</p>
+                    <a href="{{ url_for('.git_issues_settings_edit') }}" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success" id="run">Run</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
-</div>
 
+    {% block js %}
+    {% endblock %}
+
+    <script>
+        let run_btn = document.getElementById('run');
+        let status_div = document.getElementById('status');
+        status_div.style.display = 'none';
+        run_btn.onclick = function () {
+            status_div.style.display = 'block';
+            status_div.innerHTML = 'Running...';
+            run_btn.innerText = 'Running';
+            run_btn.disabled = true;
+            run_btn.className = 'btn btn-warning';
+            $.ajax({
+                url: "{{ url_for('.generate_gitlab_issues') }}", success: function (result) {
+                    $("#status").html(result.message);
+                    run_btn.innerText = 'Run';
+                    run_btn.disabled = false;
+                    run_btn.className = 'btn btn-success';
+                }, error: function (result) {
+                    $("#status").html('settings or network error!');
+                    status_div.style.display = 'block';
+                    run_btn.innerText = 'Run';
+                    run_btn.disabled = false;
+                    run_btn.className = 'btn btn-success';
+                }
+            });
+
+
+        }
+
+
+    </script>
 
 {% endblock %}
 
-{% block js %}
-{% endblock %}
+
