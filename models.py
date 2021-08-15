@@ -10,6 +10,7 @@ from app import Settings
 
 class Settings(db.Model):
     __tablename__ = "settings"
+    __table_args__ = {'extend_existing': True} 
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200))
@@ -18,6 +19,7 @@ class Settings(db.Model):
 
 class GitIssues(db.Model):
     __tablename__ = "gitissues"
+    __table_args__ = {'extend_existing': True} 
 
     id = db.Column(db.Integer, primary_key=True)
     settings = db.Column(db.Text)

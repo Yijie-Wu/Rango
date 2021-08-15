@@ -32,7 +32,7 @@ class GetIssuesAPI(MethodView):
                 csv_file_name = 'Gitlab_issues_result_' + str(project_id) + '_' + str(int(time.time())) + '.csv'
                 csv_file = os.path.join(store_path, csv_file_name)
                 all_issues = generate_csv(issues, csv_file)
-
+                db.get_engine().execute("truncate table gitissues")
                 for issue in all_issues:
                     new_issue = GitIssues(settings=str(git_issues_settings.content), content=str(issue))
                     db.session.add(new_issue)
@@ -50,7 +50,7 @@ api_v1 = Blueprint('api_v1', __name__)
 CORS(api_v1)
 
 api_v1.add_url_rule('/get_issues', view_func=GetIssuesAPI.as_view('get_issues'), methods=['GET'])
-app.register_blueprint(api_v1, url_prefix='/api/v1')
+# app.register_blueprint(api_v1, url_prefix='/api/v1')
 
 
 @app.route('/')
@@ -150,7 +150,7 @@ def generate_gitlab_issues():
             csv_file_name = 'Gitlab_issues_result_' + str(project_id) + '_' + str(int(time.time())) + '.csv'
             csv_file = os.path.join(store_path, csv_file_name)
             all_issues = generate_csv(issues, csv_file)
-
+            db.get_engine().execute("truncate table gitissues")
             for issue in all_issues:
                 new_issue = GitIssues(settings=str(git_issues_settings.content), content=str(issue))
                 db.session.add(new_issue)
